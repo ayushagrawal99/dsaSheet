@@ -59,6 +59,24 @@ const userSignUpSchema = Joi.object({
       'string.base': `"gender" should be a type of 'text'`,
       'any.only': `"gender" must be one of 'male', 'female', or 'others'`,
     }),
+    progress: Joi.array()
+    .items(
+        Joi.object({
+            topicId: Joi.string().allow(null, ''),
+            subtopicId: Joi.string().allow(null, ''),
+            problemId: Joi.string().allow(null, ''),
+            completed: Joi.boolean()
+                .default(false)
+                .messages({
+                    "boolean.base": "Completed must be a boolean value",
+                }),
+        })
+    )
+    .allow(null)
+    .optional()
+    .messages({
+        "array.base": "Progress must be an array",
+    }),
 });
 
 const userSignInSchema = Joi.object({

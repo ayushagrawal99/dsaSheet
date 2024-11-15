@@ -45,6 +45,12 @@ const userSchema = new mongoose.Schema({
             message: `{VALUE} gender is not allowed`,
         },
     },
+    progress: [
+        {
+          topicId: { type: mongoose.Schema.Types.ObjectId, ref: 'Topic' },
+          completed: { type: Boolean, default: false }
+        }
+      ]
 }, {
     timestamps: true
 });
